@@ -9,24 +9,41 @@
 </head>
 
 <body class="bg-gray-100">
-  <header class="p-5 border-b bg-white shadow">
-    <div class="container mx-auto flex justify-between items-center">
-      <h1 class="font-black text-3xl">DevStagram</h1>
+  <header class="p-5 bg-white border-b shadow">
+    <div class="container flex items-center justify-between mx-auto">
+      <h1 class="text-3xl font-black">DevStagram</h1>
 
-      <nav class="flex gap-2 items-center">
-        <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
-        <a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('register') }}">Crear Cuenta</a>
-      </nav>
+      @auth
+        <nav class="flex items-center gap-2">
+          <a class="text-sm font-bold text-gray-600 uppercase" href="#">
+            Hola: <span class="font-normal lowercase">{{ auth()->user()->username }}</span>
+          </a>
+
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="text-sm font-bold text-gray-600 uppercase" href="{{ route('logout') }}">
+              Cerrar Sesión
+            </button>
+          </form>
+        </nav>
+      @endauth
+
+      @guest
+        <nav class="flex items-center gap-2">
+          <a class="text-sm font-bold text-gray-600 uppercase" href="{{ route('login') }}">Login</a>
+          <a class="text-sm font-bold text-gray-600 uppercase" href="{{ route('register') }}">Crear Cuenta</a>
+        </nav>
+      @endguest
     </div>
   </header>
 
   <main class="container mx-auto mt-10">
-    <h2 class="font-black text-center text-3xl mb-10">@yield('pageTitle')</h2>
+    <h2 class="mb-10 text-3xl font-black text-center">@yield('pageTitle')</h2>
 
     @yield('content')
   </main>
 
-  <footer class="text-center p-5 text-gray-500 font-bold uppercase mt-10">
+  <footer class="p-5 mt-10 font-bold text-center text-gray-500 uppercase">
     DevStagram - Todos los derechos reservados {{ date('Y') }}
   </footer>
 </body>
