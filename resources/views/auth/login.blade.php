@@ -9,8 +9,13 @@
     </div>
 
     <div class="p-6 bg-white rounded-lg shadow-lg md:w-4/12">
-      <form >
+      <form method="POST" action="{{route('login')}}">
         @csrf
+
+        @if(session('message'))
+          <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ session('message') }}</p>
+        @endif
+
         <div class="mb-5">
           <label for="email" class="block mb-2 font-bold text-gray-500 uppercase">Correo electrónico</label>
           <input type="email" name="email" id="email" placeholder="correo@correo.com" class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror" value="{{ old('email') }}">
