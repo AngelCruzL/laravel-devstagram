@@ -21,7 +21,7 @@
     </div>
 
     <div class='md:w-1/2 p-10 bg-white rounded-lg shadow-xl mt-10 md:mt-0'>
-      <form action="{{ route('register') }}" method="POST">
+      <form action="{{ route('posts.store') }}" method="POST">
         @csrf
         <div class="mb-5">
           <label for="title" class="block mb-2 font-bold text-gray-500 uppercase">Título</label>
@@ -49,6 +49,14 @@
           >{{ old('description') }}</textarea>
 
           @error('description')
+          <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ $message }}</p>
+          @enderror
+        </div>
+
+        <div class='mb-5'>
+          <input type='hidden' name='image' value='{{ old('image') }}'>
+
+          @error('image')
           <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ $message }}</p>
           @enderror
         </div>
