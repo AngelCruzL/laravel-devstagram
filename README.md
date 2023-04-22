@@ -31,7 +31,19 @@ After that to run the project use the next commands
 ```
 
 ```bash
+./vendor/bin/sail artisan migrate
+```
+
+```bash
 ./vendor/bin/sail npm run dev
+```
+
+Now you can access the project in http://localhost
+
+If you have problems with the validations of the forms, you can run the next command or project root dir to install the validation in spanish:
+
+```bash
+git clone https://github.com/MarcoGomesr/laravel-validation-en-espanol.git resources/lang
 ```
 
 ## License
