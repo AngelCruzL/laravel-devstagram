@@ -7,11 +7,21 @@
 To run the project you need install the dependencies:
 
 ```bash
+composer update
+```
+
+```bash
 ./vendor/bin/sail composer install
 ```
 
 ```bash
 ./vendor/bin/sail npm install
+```
+
+Now you need to create an `.env` file and copy the content of `.env.example` to it. You can use the next command:
+
+```bash
+cp .env.example .env
 ```
 
 After that to run the project use the next commands
