@@ -1,13 +1,14 @@
 <?php
 
-  namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-  use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
-  class ImageController extends Controller
+class ImageController extends Controller
+{
+  public function store(Request $request)
   {
-    public function store(Request $request)
-    {
-      return 'Image uploaded';
-    }
+    $input = $request->file('file');
+    return response()->json(['image' => $input->extension()]);
   }
+}
