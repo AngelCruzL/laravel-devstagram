@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -29,20 +28,28 @@ class PostController extends Controller
       'image' => 'required',
     ]);
 
-//    Post::create([
-//      'title' => $request->title,
-//      'description' => $request->description,
-//      'image' => $request->image,
-//      'user_id' => auth()->user()->id,
-//    ]);
+    //    Post::create([
+    //      'title' => $request->title,
+    //      'description' => $request->description,
+    //      'image' => $request->image,
+    //      'user_id' => auth()->user()->id,
+    //    ]);
 
-//    Other way to do it:
-    $post = new Post();
-    $post->title = $request->title;
-    $post->description = $request->description;
-    $post->image = $request->image;
-    $post->user_id = auth()->user()->id;
-    $post->save();
+    //    Other way to do it:
+    //    $post = new Post();
+    //    $post->title = $request->title;
+    //    $post->description = $request->description;
+    //    $post->image = $request->image;
+    //    $post->user_id = auth()->user()->id;
+    //    $post->save();
+
+    //    Another way to do it including relationships:
+    $request->user()->posts()->create([
+      'title' => $request->title,
+      'description' => $request->description,
+      'image' => $request->image,
+      'user_id' => auth()->user()->id,
+    ]);
 
     return redirect()->route('posts.index', auth()->user()->username);
   }
