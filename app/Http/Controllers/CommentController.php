@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comments;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
   public function store(Request $request, User $user, Post $post): RedirectResponse
   {
@@ -16,7 +16,7 @@ class CommentsController extends Controller
       'comment' => 'required|max:255',
     ]);
 
-    Comments::create([
+    Comment::create([
       'comment' => $request->comment,
       'user_id' => auth()->user()->id,
       'post_id' => $post->id,
