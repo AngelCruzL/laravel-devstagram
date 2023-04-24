@@ -5,7 +5,13 @@
 @section('content')
   <div class='md:flex md:justify-center'>
     <div class='p-6 bg-white shadow | md:w-1/2'>
-      <form class='mt-10 | md:mt-0' action=''>
+      <form
+        class='mt-10 | md:mt-0'
+        action='{{ route('profile.store') }}'
+        enctype='multipart/form-data'
+        method='POST'
+      >
+        @csrf
         <div class='mb-5'>
           <label for='username' class='block mb-2 text-gray-500 font-bold uppercase'>
             Username
@@ -38,10 +44,6 @@
             value=''
             accept='.jpg, .jpeg, .png'
           >
-
-          @error('username')
-          <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ $message }}</p>
-          @enderror
         </div>
 
         <input
