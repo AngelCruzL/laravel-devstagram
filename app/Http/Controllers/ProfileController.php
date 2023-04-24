@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -19,7 +22,7 @@ class ProfileController extends Controller
     return view('profile.index');
   }
 
-  public function store(Request $request): void
+  public function store(Request $request): RedirectResponse
   {
     $request->request->add([
       'username' => Str::slug($request->username),
@@ -35,5 +38,23 @@ class ProfileController extends Controller
         'not_in:twitter,editar-perfil'
       ]
     ]);
+
+    if ($request->avatar) {
+      $image = $request->file('avatar');
+      $image_name = Str::uuid() . '.' . $image->extension();
+      $image_path = public_path('profile-pictures') . '/' . $image_name;
+
+      $image_server = Image::make($image);
+      $image_server->fit(1000, 1000);
+      $image_server->save($image_path);
+    }
+
+    //  Update the user's profile
+    $user = User::find(auth()->user()->id);
+    $user->username = $request->username;
+    $user->image = $image_name ?? auth()->user()->image ?? null;
+    $user->save();
+
+    return redirect()->route('posts.index', $user->username);
   }
 }

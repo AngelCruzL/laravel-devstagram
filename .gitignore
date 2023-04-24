@@ -20,3 +20,8 @@ public/uploads/*.jpg
 public/uploads/*.png
 public/uploads/*.gif
 public/uploads/*.jpeg
+
+public/profile-pictures/*.jpg
+public/profile-pictures/*.png
+public/profile-pictures/*.gif
+public/profile-pictures/*.jpeg

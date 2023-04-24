@@ -32,14 +32,14 @@
         </div>
 
         <div class='mb-5'>
-          <label for='profile_image' class='block mb-2 text-gray-500 font-bold uppercase'>
+          <label for='avatar' class='block mb-2 text-gray-500 font-bold uppercase'>
             Imagen de Perfil
           </label>
 
           <input
             type='file'
-            id='profile_image'
-            name='profile_image'
+            id='avatar'
+            name='avatar'
             class="p-3 border w-full rounded-lg"
             value=''
             accept='.jpg, .jpeg, .png'
