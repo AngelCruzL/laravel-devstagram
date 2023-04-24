@@ -22,7 +22,7 @@ class ProfileController extends Controller
     return view('profile.index');
   }
 
-  public function store(Request $request): RedirectResponse
+  public function store(Request $request): View|RedirectResponse
   {
     $request->request->add([
       'username' => Str::slug($request->username),
@@ -36,7 +36,11 @@ class ProfileController extends Controller
         'min:3',
         'max:25',
         'not_in:twitter,editar-perfil'
-      ]
+      ],
+      'email' => [
+        Rule::unique('users', 'email')->ignore(auth()->user()),
+      ],
+      'password' => 'nullable|confirmed|min:6',
     ]);
 
     if ($request->avatar) {
@@ -53,6 +57,16 @@ class ProfileController extends Controller
     $user = User::find(auth()->user()->id);
     $user->username = $request->username;
     $user->image = $image_name ?? auth()->user()->image ?? null;
+    $user->email = $request->email ?? auth()->user()->email;
+    $user->password = $request->password ?? auth()->user()->password;
+    $user->has_changed_password = $request->password ? true : false;
+
+    if ($request->email || $request->password) {
+      return view('profile.confirm-change', [
+        'user' => $user,
+      ]);
+    }
+
     $user->save();
 
     return redirect()->route('posts.index', $user->username);
