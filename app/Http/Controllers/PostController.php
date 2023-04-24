@@ -76,6 +76,13 @@ class PostController extends Controller
     $this->authorize('delete', $post);
     $post->delete();
 
+    //  Remove the image from the storage
+    $image_path = public_path('uploads/' . $post->image);
+
+    if (file_exists($image_path)) {
+      unlink($image_path);
+    }
+
     return redirect()->route('posts.index', auth()->user()->username);
   }
 }
