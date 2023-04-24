@@ -3,7 +3,7 @@
 @section('pageTitle', $post->title)
 
 @section('content')
-  <div class='container mx-auto flex'>
+  <div class='container mx-auto md:flex'>
     <div class='md:w-1/2'>
       <img
         src='{{ asset("uploads") . "/" . $post->image }}'
@@ -25,14 +25,24 @@
       </div>
     </div>
 
-    <div class='md:w-1/2'>
+    <div class='md:w-1/2 p-5'>
       <div class='shadow bg-white p-5 mb-5'>
         @auth
           <p class='text-xl font-bold text-center mb-4'>
             Agrega un nuevo comentario
           </p>
 
-          <form action=''>
+          @if(session('message'))
+            <p class='p-2 my-2 text-sm text-center text-white font-bold bg-green-500 rounded-lg'>
+              {{ session('message') }}
+            </p>
+          @endif
+
+          <form
+            action='{{ route('comments.store', ['post' => $post, 'user' => $user]) }}'
+            method='POST'
+          >
+            @csrf
             <div class="mb-5">
               <label for="comment" class="block mb-2 font-bold text-gray-500 uppercase sr-only">
                 Agrega un comentario
