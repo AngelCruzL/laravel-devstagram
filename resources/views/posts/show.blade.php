@@ -27,34 +27,36 @@
 
     <div class='md:w-1/2'>
       <div class='shadow bg-white p-5 mb-5'>
-        <p class='text-xl font-bold text-center mb-4'>
-          Agrega un nuevo comentario
-        </p>
+        @auth
+          <p class='text-xl font-bold text-center mb-4'>
+            Agrega un nuevo comentario
+          </p>
 
-        <form action=''>
-          <div class="mb-5">
-            <label for="commentary" class="block mb-2 font-bold text-gray-500 uppercase sr-only">
-              Agrega un comentario
-            </label>
+          <form action=''>
+            <div class="mb-5">
+              <label for="commentary" class="block mb-2 font-bold text-gray-500 uppercase sr-only">
+                Agrega un comentario
+              </label>
 
-            <textarea
-              name="commentary"
-              id="commentary"
-              placeholder="Agrega un comentario a la publicación"
-              class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
-            ></textarea>
+              <textarea
+                name="commentary"
+                id="commentary"
+                placeholder="Agrega un comentario a la publicación"
+                class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
+              ></textarea>
 
-            @error('commentary')
-            <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ $message }}</p>
-            @enderror
-          </div>
+              @error('commentary')
+              <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ $message }}</p>
+              @enderror
+            </div>
 
-          <input
-            type="submit"
-            value="Comentar"
-            class="w-full p-3 font-bold text-white uppercase transition-colors rounded-lg cursor-pointer bg-sky-600"
-          >
-        </form>
+            <input
+              type="submit"
+              value="Comentar"
+              class="w-full p-3 font-bold text-white uppercase transition-colors rounded-lg cursor-pointer bg-sky-600"
+            >
+          </form>
+        @endauth
       </div>
     </div>
   </div>
