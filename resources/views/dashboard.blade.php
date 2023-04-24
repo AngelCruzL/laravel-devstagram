@@ -48,6 +48,10 @@
           </div>
         @endforeach
       </div>
+
+      <div class='mt-10'>
+        {{ $posts->links() }}
+      </div>
     @else
       <p class='text-gray-600 uppercase text-sm text-center font-bold'>No hay publicaciones</p>
     @endif
