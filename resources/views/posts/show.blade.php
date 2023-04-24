@@ -34,18 +34,18 @@
 
           <form action=''>
             <div class="mb-5">
-              <label for="commentary" class="block mb-2 font-bold text-gray-500 uppercase sr-only">
+              <label for="comment" class="block mb-2 font-bold text-gray-500 uppercase sr-only">
                 Agrega un comentario
               </label>
 
               <textarea
-                name="commentary"
-                id="commentary"
+                name="comment"
+                id="comment"
                 placeholder="Agrega un comentario a la publicación"
                 class="border p-3 w-full rounded-lg @error('name') border-red-500 @enderror"
               ></textarea>
 
-              @error('commentary')
+              @error('comment')
               <p class="p-2 my-2 text-sm text-center text-white bg-red-500 rounded-lg">{{ $message }}</p>
               @enderror
             </div>
