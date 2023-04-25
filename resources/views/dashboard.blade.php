@@ -6,7 +6,9 @@
   <div class="flex justify-center">
     <div class="flex flex-col items-center w-full md:w-8/12 lg:w-6/12 md:flex-row">
       <div class="w-8/12 px-5 lg:w-6/12">
-        <img src="{{asset('img/user.svg')}}" alt="User default image">
+        <img
+          src="{{ $user->image ? asset('profile-pictures/' . $user->image) : asset('img/user.svg') }}"
+          alt="User default image">
       </div>
 
       <div class="flex flex-col items-center px-5 py-10 md:w-8/12 lg:w-6/12 md:justify-center md:items-start md:py-10">
@@ -44,7 +46,7 @@
         </p>
 
         <p class="mb-3 text-sm font-bold to-gray-800">
-          0
+          {{ $user->posts->count() }}
           <span class="font-normal">Posts</span>
         </p>
       </div>
