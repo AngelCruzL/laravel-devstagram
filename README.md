@@ -40,11 +40,29 @@ After that to run the project use the next commands
 
 Now you can access the project in http://localhost
 
-If you have problems with the validations of the forms, you can run the next command or project root dir to install the validation in spanish:
+If you have problems with the validations of the forms, you can run the next command or project root dir to install the
+validation in spanish:
 
 ```bash
 git clone https://github.com/MarcoGomesr/laravel-validation-en-espanol.git resources/lang
 ```
+
+Then open the `resources/lang/es/validation.php` file and add the next code to the end of the file:
+
+```php
+'attributes' => [
+  'name' => 'nombre',
+  'username' => 'usuario',
+  'email' => 'correo electrónico',
+  'password' => 'contraseña',
+  'title' => 'título',
+  'description' => 'descripción',
+  'image' => 'imagen',
+  'comment' => 'comentario'
+],
+```
+
+This allows us to translate the attributes of the forms to spanish.
 
 ## License
 
