@@ -66,7 +66,7 @@ class ProfileController extends Controller
         'user' => $user,
       ]);
     }
-
+    unset($user->has_changed_password);
     $user->save();
 
     return redirect()->route('posts.index', $user->username);
