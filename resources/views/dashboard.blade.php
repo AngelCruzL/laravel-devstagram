@@ -51,30 +51,32 @@
         </p>
 
         @auth
-          <form
-            action='{{ route('users.follow', $user) }}'
-            method='POST'
-          >
-            @csrf
-            <input
-              type="submit"
-              value="Seguir"
-              class='cursor-pointer py-1 px-3 rounded bg-blue-600 text-white text-xs uppercase font-bold'
+          @if($user->id!==auth()->user()->id)
+            <form
+              action='{{ route('users.follow', $user) }}'
+              method='POST'
             >
-          </form>
+              @csrf
+              <input
+                type="submit"
+                value="Seguir"
+                class='cursor-pointer py-1 px-3 rounded bg-blue-600 text-white text-xs uppercase font-bold'
+              >
+            </form>
 
-          <form
-            action='{{ route('users.unfollow', $user) }}'
-            method='POST'
-          >
-            @csrf
-            @method('DELETE')
-            <input
-              type="submit"
-              value="Dejar de Seguir"
-              class='cursor-pointer py-1 px-3 rounded bg-red-600 text-white text-xs uppercase font-bold'
+            <form
+              action='{{ route('users.unfollow', $user) }}'
+              method='POST'
             >
-          </form>
+              @csrf
+              @method('DELETE')
+              <input
+                type="submit"
+                value="Dejar de Seguir"
+                class='cursor-pointer py-1 px-3 rounded bg-red-600 text-white text-xs uppercase font-bold'
+              >
+            </form>
+          @endif
         @endauth
       </div>
     </div>
