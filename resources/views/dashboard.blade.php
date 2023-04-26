@@ -36,12 +36,14 @@
         </div>
 
         <p class="mt-5 mb-3 text-sm font-bold to-gray-800">
-          0
-          <span class="font-normal">Seguidores</span>
+          {{ $user->followers->count() }}
+          <span class="font-normal">
+            @choice('Seguidor|Seguidores', $user->followers->count())
+          </span>
         </p>
 
         <p class="mb-3 text-sm font-bold to-gray-800">
-          0
+          {{ $user->following->count() }}
           <span class="font-normal">Siguiendo</span>
         </p>
 
@@ -52,30 +54,32 @@
 
         @auth
           @if($user->id!==auth()->user()->id)
-            <form
-              action='{{ route('users.follow', $user) }}'
-              method='POST'
-            >
-              @csrf
-              <input
-                type="submit"
-                value="Seguir"
-                class='cursor-pointer py-1 px-3 rounded bg-blue-600 text-white text-xs uppercase font-bold'
+            @if(!$user->is_follower(auth()->user()))
+              <form
+                action='{{ route('users.follow', $user) }}'
+                method='POST'
               >
-            </form>
-
-            <form
-              action='{{ route('users.unfollow', $user) }}'
-              method='POST'
-            >
-              @csrf
-              @method('DELETE')
-              <input
-                type="submit"
-                value="Dejar de Seguir"
-                class='cursor-pointer py-1 px-3 rounded bg-red-600 text-white text-xs uppercase font-bold'
+                @csrf
+                <input
+                  type="submit"
+                  value="Seguir"
+                  class='cursor-pointer py-1 px-3 rounded bg-blue-600 text-white text-xs uppercase font-bold'
+                >
+              </form>
+            @else
+              <form
+                action='{{ route('users.unfollow', $user) }}'
+                method='POST'
               >
-            </form>
+                @csrf
+                @method('DELETE')
+                <input
+                  type="submit"
+                  value="Dejar de Seguir"
+                  class='cursor-pointer py-1 px-3 rounded bg-red-600 text-white text-xs uppercase font-bold'
+                >
+              </form>
+            @endif
           @endif
         @endauth
       </div>
