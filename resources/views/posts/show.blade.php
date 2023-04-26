@@ -10,15 +10,9 @@
         alt='Imagen del post {{ $post->title }}'
       >
 
-      <div class='p-3 flex items-center gap-2'>
-        @auth
-          <livewire:post-like :post='$post' />
-        @endauth
-
-        <p class='font-bold'>{{ $post->likes->count() }}
-          <span class='font-normal'>Likes</span>
-        </p>
-      </div>
+      @auth
+        <livewire:post-like :post='$post' />
+      @endauth
 
       <div>
         <p class='font-bold'>{{ $post->user->username }}</p>
