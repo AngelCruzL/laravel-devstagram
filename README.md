@@ -2,9 +2,46 @@
 
 # DevStagram
 
+The project is a social network for developers, where they can share their projects and comment on other projects.
+
+## General Information
+
+The project was developed with Laravel 9, using the Docker setup provided by Laravel Sail. Was created to practice the
+use
+of Laravel, and get familiar with the framework and its features.
+
+## Technologies
+
+- Laravel 9
+- Laravel Sail
+- Tailwind CSS
+- Livewire
+- PHP 8.1
+- MySQL 8.0
+- Docker
+
+## Features
+
+- Authentication
+- User profile
+- Follow/Unfollow users
+- Create/Delete posts
+- Comment posts
+- Like/Unlike posts
+- Feed with posts of the users that you follow
+
+## Requirements
+
+To run the project you need to have installed:
+
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [PHP 8.1](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+
 ## Setup
 
-To run the project you need install the dependencies:
+After clone the repository you need install the dependencies:
 
 ```bash
 composer update
@@ -63,6 +100,10 @@ Then open the `resources/lang/es/validation.php` file and add the next code to t
 ```
 
 This allows us to translate the attributes of the forms to spanish.
+
+## Demo
+
+You can see a demo of the project in [DevStagram](https://devstagram.angelcruzl.dev)
 
 ## License
 
