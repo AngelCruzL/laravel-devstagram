@@ -4,7 +4,7 @@
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="red"
+      fill="{{ $is_liked ? 'red' : 'none' }}"
       viewBox="0 0 24 18"
       stroke-width="1.5"
       stroke="currentColor"
